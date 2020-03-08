@@ -1,19 +1,18 @@
 import json
 
-import quandl
 import tweepy
 from nltk import WordPunctTokenizer, re
 from google.cloud import language
 from google.cloud.language import enums
 from google.cloud.language import types
-from t import consumer_key, consumer_secret, access_secret, access_token, quandl_key
+from t import consumer_key, consumer_secret, access_secret, access_token
 from googlesearch import search
 import time
+from datetime import timedelta, datetime
 import yfinance as yf
 import os
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "creds.json"
-quandl.ApiConfig.api_key = quandl_key
 
 
 def authentication(consumer_key, consumer_secret, account_token, account_secret):
@@ -70,11 +69,15 @@ def get_ticker(name):
 
 
 def get_price(stock_ticker, price_type, price_date):
+    open_time = datetime.strptime(price_date, '%Y-%m-%d')
+    end_time = open_time + timedelta(days=2)
+    end_date = datetime.strftime(end_time, '%Y-%m-%d')
+
     try:
         if price_type == 'close':
-            return yf.Ticker(stock_ticker).history(start=price_date, end=price_date).Close[0]
+            return yf.Ticker(stock_ticker).history(start=price_date, end=end_date).Close[0]
         elif price_type == 'open':
-            return yf.Ticker(stock_ticker).history(start=price_date, end=price_date).Open[0]
+            return yf.Ticker(stock_ticker).history(start=price_date, end=end_date).Open[0]
     except:
         return 0
 
@@ -111,9 +114,6 @@ def main():
     company_dict = json.load(f)
     f.close()
 
-    profit = 0
-
-
     ## Scrape New Donald Trump Tweets
     # tweets = get_tweets('realDonaldTrump')
     # for tweet in tweets:
@@ -121,6 +121,9 @@ def main():
     #         for company in dow_list:
     #             if company.lower() in clean_tweet(tweet.full_text):
     #                 print("text '%s' contains phrase '%s'" % (tweet.full_text, company))
+
+    money_put_in = 0
+    profit = 0
 
     # Using Old Tweets
     with open('trump_archive.json') as data_file:
@@ -139,7 +142,12 @@ def main():
                         position = get_position(tweet_sentiment)
                         profit = get_profit(position, open_price, close_price, profit)
 
-                        if close_price != 0:
+                        if position == 'Long Position':
+                            money_put_in += open_price
+                        elif position == 'Short Position':
+                            money_put_in += close_price
+
+                        if close_price != 0 and position != 'Do Nothing':
                             print("Tweet: '%s'\n"
                                   "Date: %s\n"
                                   "Company Mentioned: %s\n"
@@ -152,13 +160,17 @@ def main():
                                   % (tweet['text'],
                                      price_date,
                                      company,
-                                     tweet_sentiment,
+                                     round(tweet_sentiment, 2),
                                      position,
                                      open_price,
                                      close_price,
-                                     difference,
-                                     profit
+                                     round(difference, 2),
+                                     round(profit, 2)
                                      ))
+        percentage_gain = profit / money_put_in
+        print("Analysis complete.")
+        print("Total Investment: %s, Total Profit/Loss: %s, Percentage Gain: %s"
+              % (round(money_put_in, 2), round(profit, 2), round(percentage_gain, 2)))
 
 
 if __name__ == '__main__':
