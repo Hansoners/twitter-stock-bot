@@ -258,4 +258,7 @@ Total Investment: 10915.0, Total Profit/Loss: 153.16, Percentage Gain: 0.01
 ```
 
 ## Obstacles
-Twitter's API only allows for scraping 3200 tweets from a user's timeline, so I was unable to scrape all the tweets from the POTUS twitter account. As a result, I had to download an existing json of tweets from the POTUS. Additionally, I was unable to obtain historical data on stock prices at the exact time of the tweet due to API limitations, so I had to use opening prices instead.  
+Twitter's API only allows for scraping 3200 tweets from a user's timeline, so I was unable to scrape all the tweets from the POTUS twitter account. As a result, I had to download an existing json of tweets from the POTUS. Additionally, I was unable to obtain historical data on stock prices at the exact time of the tweet due to API limitations, so I had to use opening prices instead.
+
+## Conclusion
+If your objective is to make minimal profits and maybe (most likely) lose all your money, this is for you ✌️.
