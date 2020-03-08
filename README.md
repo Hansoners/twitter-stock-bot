@@ -209,10 +209,6 @@ Close: 1371.99
 Difference: -45.63
 Total Profit/Loss: 151.9
 
-- FB: No data found for this date range, symbol may be delisted
-- FB: No data found for this date range, symbol may be delisted
-- FB: No data found for this date range, symbol may be delisted
-- FB: No data found for this date range, symbol may be delisted
 Tweet: 'The Schumer-Rounds-Collins immigration bill would be a total catastrophe. @DHSgov says it would be “the end of immigration enforcement in America.” It creates a giant amnesty (including for dangerous criminals), doesn’t build the wall, expands chain migration, keeps the visa...'
 Date: 2018-02-15
 Company Mentioned: Visa
