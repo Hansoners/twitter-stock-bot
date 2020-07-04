@@ -1,0 +1,98 @@
+Apple
+AbbVie
+Abbott Laboratories
+Accenture
+Adobe
+Allergan
+American International Group
+Allstate
+Amgen
+Amazon
+American Express
+Boeing
+Bank of America
+Biogen
+The Bank of New York Mellon
+Booking Holdings
+BlackRock
+Bristol-Myers Squibb
+Berkshire Hathaway
+Citigroup
+Caterpillar
+Charter Communications
+Colgate-Palmolive
+Comcast
+Capital One Financial
+ConocoPhillips
+Costco
+Cisco
+CVS
+Chevron
+DuPont de Nemours
+Danaher
+Disney
+Duke Energy
+Emerson Electric
+Exelon
+Ford
+Facebook
+FedEx
+General Dynamics
+General Electric
+Gilead Sciences
+General Motors
+Alphabet
+Goldman Sachs
+Home Depot
+Honeywell
+International Business Machines
+Intel
+Johnson & Johnson
+JPMorgan
+Kraft
+Kinder Morgan
+The Coca-Cola
+Eli Lilly
+Lockheed Martin
+Lowes
+MasterCard
+McDonalds
+Mondelēz International
+Medtronic
+MetLife
+3M
+Altria Group
+Merck &
+Morgan Stanley
+Microsoft
+NextEra Energy
+Netflix
+Nike
+NVIDIA
+Oracle
+Occidental Petroleum
+Pepsi
+Pfizer
+Procter & Gamble
+Philip Morris International
+PayPal
+Qualcomm
+Raytheon
+Starbucks
+Schlumberger
+Simon Property Group
+AT&T
+Target
+Thermo Fisher Scientific
+Texas Instruments
+UnitedHealth Group
+Union Pacific
+United Parcel Service
+US Ban
+United Technologies
+Visa
+Verizon
+Walgreens
+Wells Fargo
+Walmart
+Exxon Mobil

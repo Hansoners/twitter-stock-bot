@@ -125,52 +125,36 @@ def main():
     money_put_in = 0
     profit = 0
 
+    result = []
     # Using Old Tweets
     with open('trump_archive.json') as data_file:
         print('Loading tweets from @realDonaldTrump')
         tweets = json.load(data_file)
         for tweet in tweets:
-            if not tweet['is_retweet']:
-                for company in company_dict.keys():
-                    if contains_word(clean_tweet(tweet['text']), company.lower()):
-                        tweet_sentiment = get_sentiment_score(tweet['text'])
-                        ticker = company_dict[company]
-                        price_date = date_convert(tweet['created_at'])
-                        close_price = get_price(ticker, 'close', price_date)
-                        open_price = get_price(ticker, 'open', price_date)
-                        difference = close_price - open_price
-                        position = get_position(tweet_sentiment)
-                        profit = get_profit(position, open_price, close_price, profit)
+            for company in company_dict.keys():
+                if contains_word(clean_tweet(tweet['text']), company.lower()):
+                    tweet_sentiment = get_sentiment_score(tweet['text'])
+                    ticker = company_dict[company]
+                    price_date = date_convert(tweet['created_at'])
+                    close_price = get_price(ticker, 'close', price_date)
+                    open_price = get_price(ticker, 'open', price_date)
+                    difference = close_price - open_price
+                    position = get_position(tweet_sentiment)
+                    profit = get_profit(position, open_price, close_price, profit)
 
-                        if position == 'Long Position':
-                            money_put_in += open_price
-                        elif position == 'Short Position':
-                            money_put_in += close_price
+                    if position == 'Long Position':
+                        money_put_in += open_price
+                    elif position == 'Short Position':
+                        money_put_in += close_price
 
-                        if close_price != 0 and position != 'Do Nothing':
-                            print("Tweet: '%s'\n"
-                                  "Date: %s\n"
-                                  "Company Mentioned: %s\n"
-                                  "Sentiment: %s\n"
-                                  "Position: %s\n"
-                                  "Open: %s\n"
-                                  "Close: %s\n"
-                                  "Difference: %s\n"
-                                  "Total Profit/Loss: %s\n"
-                                  % (tweet['text'],
-                                     price_date,
-                                     company,
-                                     round(tweet_sentiment, 2),
-                                     position,
-                                     open_price,
-                                     close_price,
-                                     round(difference, 2),
-                                     round(profit, 2)
-                                     ))
-        percentage_gain = profit / money_put_in
+                    if close_price != 0 and position != 'Do Nothing':
+                        obj = {'sentiment': tweet_sentiment, 'company': company, 'bod': open_price, 'eod': close_price,
+                               'difference': (close_price - open_price) / open_price, 'id': tweet['id_str']}
+                        result.append(obj)
+
         print("Analysis complete.")
-        print("Total Investment: %s, Total Profit/Loss: %s, Percentage Gain: %s"
-              % (round(money_put_in, 2), round(profit, 2), round(percentage_gain, 2)))
+        print(result)
+        print(json.dumps(result),  file=open('Output.json', 'w'))
 
 
 if __name__ == '__main__':
