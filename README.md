@@ -1,10 +1,5 @@
 # Twitter Sentiment Analysis Trading Bot
 
-## About
-This was a fun little experimental project to analyze tweets from the POTUS with Google's Cloud Natural Language API. Based on the sentiment value of tweets mentioning companies in the S&P100, the bot would 'trade' through either a long or short position. The bot compares the opening and closing price of the stock and calculates profit/losses based on the position. A `sentiment value > 0.3` results in a long position, and a `sentiment value < 0.3` results in a short position.
-
-
-
 ## Script Output
 
 ```
